@@ -1,57 +1,57 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {
   IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
   IonContent,
   IonHeader,
-  IonInput,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonListHeader,
+  IonNote,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { trashOutline } from 'ionicons/icons';
+import { CounterComponent } from '../components/counter/counter.component';
+import { SavedCounter } from '../models/saved-counter';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   imports: [
-    FormsModule,
+    CounterComponent,
     IonButton,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
     IonContent,
     IonHeader,
-    IonInput,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonListHeader,
+    IonNote,
     IonTitle,
     IonToolbar,
   ],
 })
 export class Tab1Page {
-  counterName = '';
-  count = 0;
-  step = 1;
+  savedCounters: SavedCounter[] = [];
 
-  increment(amount: number = this.step): void {
-    const delta = Number(amount) > 0 ? Number(amount) : 1;
-    this.count += delta;
+  constructor() {
+    addIcons({ trashOutline });
   }
 
-  decrement(amount: number = this.step): void {
-    const delta = Number(amount) > 0 ? Number(amount) : 1;
-    this.count = Math.max(0, this.count - delta);
+  get totalValue(): number {
+    return this.savedCounters.reduce((acc, counter) => acc + counter.value, 0);
   }
 
-  reset(): void {
-    this.count = 0;
+  onSaved(counter: SavedCounter): void {
+    this.savedCounters.unshift(counter);
   }
 
-  resetAll(): void {
-    this.count = 0;
-    this.counterName = '';
+  deleteCounter(id: string): void {
+    this.savedCounters = this.savedCounters.filter((counter) => counter.id !== id);
   }
 }
