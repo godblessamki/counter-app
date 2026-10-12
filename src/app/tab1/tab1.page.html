@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>CounterApp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        {{ counterName || 'Moje počítadlo' }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="inputs-container">
+        <ion-input
+          label="Název počítadla"
+          label-placement="stacked"
+          fill="outline"
+          placeholder="Například návštěvníci"
+          [(ngModel)]="counterName"
+        ></ion-input>
+
+        <ion-input
+          label="Velikost kroku (step)"
+          label-placement="stacked"
+          fill="outline"
+          type="number"
+          min="1"
+          placeholder="1"
+          [(ngModel)]="step"
+        ></ion-input>
+      </div>
+
+      <p
+        class="counter-value"
+        [class.zero]="count === 0"
+        [class.positive]="count > 0"
+      >
+        {{ count }}
+      </p>
+
+      <div class="counter-actions">
+        <ion-button
+          color="danger"
+          fill="outline"
+          [disabled]="count === 0"
+          (click)="decrement(5)"
+        >
+          −5
+        </ion-button>
+
+        <ion-button
+          color="danger"
+          [disabled]="count === 0"
+          (click)="decrement()"
+        >
+          −{{ step || 1 }}
+        </ion-button>
+
+        <ion-button color="primary" (click)="increment()">
+          +{{ step || 1 }}
+        </ion-button>
+
+        <ion-button
+          color="primary"
+          fill="outline"
+          (click)="increment(5)"
+        >
+          +5
+        </ion-button>
+      </div>
+
+      <div class="reset-actions">
+        <ion-button
+          color="medium"
+          fill="outline"
+          [disabled]="count === 0"
+          (click)="reset()"
+        >
+          Reset
+        </ion-button>
+
+        <ion-button
+          color="danger"
+          fill="outline"
+          [disabled]="count === 0 && !counterName"
+          (click)="resetAll()"
+        >
+          Vymazat vše
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
