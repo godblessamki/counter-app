@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { CounterService } from '../services/counter.service';
 import { Tab2Page } from './tab2.page';
 
 describe('Tab2Page', () => {
@@ -7,6 +8,9 @@ describe('Tab2Page', () => {
   let fixture: ComponentFixture<Tab2Page>;
 
   beforeEach(async () => {
+    const counterService = TestBed.inject(CounterService);
+    vi.spyOn(counterService, 'initialize').mockResolvedValue();
+
     fixture = TestBed.createComponent(Tab2Page);
     component = fixture.componentInstance;
     fixture.detectChanges();

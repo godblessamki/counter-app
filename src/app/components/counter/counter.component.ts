@@ -51,19 +51,20 @@ export class CounterComponent implements OnInit {
   }
 
   save(): void {
-    const name = this.counterName.trim();
+  const name = this.counterName.trim();
 
-    if (!name) {
-      return;
-    }
+  if (!name) {
+    return;
+  }
 
-    this.saved.emit({
-      id: crypto.randomUUID(),
-      name,
-      value: this.count,
-    });
+  this.saved.emit({
+    id: crypto.randomUUID(),
+    name,
+    value: this.count,
+    createdAt: new Date().toISOString(),
+  });
 
-    this.counterName = '';
-    this.count = this.initialValue();
+  this.counterName = '';
+  this.count = 0;
   }
 }

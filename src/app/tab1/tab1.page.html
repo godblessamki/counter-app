@@ -6,46 +6,7 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <app-counter
-    heading="První počítadlo"
-    [initialValue]="0"
+    heading="Nové počítadlo"
     (saved)="onSaved($event)"
   ></app-counter>
-
-  <app-counter
-    heading="Druhé počítadlo"
-    [initialValue]="5"
-    (saved)="onSaved($event)"
-  ></app-counter>
-
-  @if (savedCounters.length > 0) {
-    <ion-list>
-      <ion-list-header>
-        <ion-label>Uložená počítadla ({{ savedCounters.length }})</ion-label>
-        <ion-note slot="end" class="total-note">Celkem: {{ totalValue }}</ion-note>
-      </ion-list-header>
-
-      @for (counter of savedCounters; track counter.id) {
-        <ion-item>
-          <ion-label>
-            <h2>{{ counter.name }}</h2>
-            <p>{{ counter.id }}</p>
-          </ion-label>
-          <ion-note slot="end">{{ counter.value }}</ion-note>
-          <ion-button
-            slot="end"
-            fill="clear"
-            color="danger"
-            aria-label="Odstranit"
-            (click)="deleteCounter(counter.id)"
-          >
-            <ion-icon slot="icon-only" name="trash-outline" aria-hidden="true"></ion-icon>
-          </ion-button>
-        </ion-item>
-      }
-    </ion-list>
-  } @else {
-    <p class="empty-state">
-      Zatím nebylo uloženo žádné počítadlo.
-    </p>
-  }
 </ion-content>
