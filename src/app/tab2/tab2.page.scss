@@ -1,3 +1,4 @@
+.history-controls,
 .history-header,
 ion-list,
 .state-message {
@@ -5,11 +6,37 @@ ion-list,
   margin: 1rem auto;
 }
 
+.history-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  ion-searchbar {
+    padding: 0;
+  }
+
+  .sort-item {
+    --background: transparent;
+    --padding-start: 0;
+  }
+}
+
 .history-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.history-stats {
+  p {
+    margin: 0.25rem 0;
+    color: var(--ion-color-step-600, #666);
+
+    strong {
+      color: var(--ion-text-color, #000);
+    }
+  }
 }
 
 .state-message {
