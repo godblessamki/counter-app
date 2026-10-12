@@ -58,4 +58,24 @@ describe('Tab2Page', () => {
     component.onSortChange('value-asc');
     expect(component.displayedCounters()[0].value).toBe(10);
   });
+
+  it('should calculate minValue and maxValue correctly', () => {
+    const counterService = TestBed.inject(CounterService);
+    vi.spyOn(counterService, 'counters').mockReturnValue([
+      { id: '1', name: 'A', value: 10, createdAt: '2026-09-17T08:00:00.000Z' },
+      { id: '2', name: 'B', value: 5, createdAt: '2026-09-17T09:00:00.000Z' },
+      { id: '3', name: 'C', value: 30, createdAt: '2026-09-17T10:00:00.000Z' },
+    ]);
+
+    expect(component.minValue()).toBe(5);
+    expect(component.maxValue()).toBe(30);
+  });
+
+  it('should return null for minValue and maxValue when counters are empty', () => {
+    const counterService = TestBed.inject(CounterService);
+    vi.spyOn(counterService, 'counters').mockReturnValue([]);
+
+    expect(component.minValue()).toBeNull();
+    expect(component.maxValue()).toBeNull();
+  });
 });
