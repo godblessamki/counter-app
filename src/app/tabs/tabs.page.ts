@@ -9,7 +9,7 @@ import {
 import { addIcons } from 'ionicons';
 import {
   calculatorOutline,
-  informationCircleOutline,
+  calendarOutline,
   timeOutline,
 } from 'ionicons/icons';
 
@@ -25,7 +25,7 @@ export class TabsPage {
   constructor() {
     addIcons({
       calculatorOutline,
-      informationCircleOutline,
+      calendarOutline,
       timeOutline,
     });
   }
